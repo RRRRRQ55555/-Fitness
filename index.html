@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Planner Demo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>🏋️ 健身训练方案 Demo</h1>
+      <p>选择今日训练项目，组合动作，开始训练并保存记录。</p>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <div class="panel-title-row">
+          <h2>1) 选择训练项目</h2>
+          <button id="openExerciseManager" class="ghost">管理细分动作</button>
+        </div>
+        <div id="categoryGrid" class="category-grid"></div>
+        <div class="actions-row">
+          <button id="buildPlanBtn" class="primary">生成今日训练计划</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2) 动作组合与排序</h2>
+        <p class="hint">从所选分类中勾选动作，可拖拽动作卡片改变顺序，并设置次数与休息时间。</p>
+        <div id="exercisePicker" class="exercise-picker"></div>
+        <div id="selectedPlan" class="selected-plan"></div>
+        <div class="actions-row">
+          <button id="savePlanBtn" class="primary">保存并开始训练</button>
+        </div>
+      </section>
+
+      <section class="panel hidden" id="workoutPanel">
+        <h2>3) 训练中</h2>
+        <div id="workoutCard" class="workout-card"></div>
+      </section>
+
+      <section class="panel">
+        <h2>训练记录</h2>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </main>
+
+    <dialog id="exerciseDialog">
+      <form id="exerciseForm" method="dialog" class="dialog-body">
+        <h3>为分类添加自定义动作</h3>
+        <label>
+          分类
+          <select id="dialogCategory"></select>
+        </label>
+        <label>
+          动作名称
+          <input id="dialogExerciseName" type="text" required placeholder="例如：哑铃推肩" />
+        </label>
+        <label>
+          估算每次消耗(kcal)
+          <input id="dialogCalories" type="number" min="1" value="6" required />
+        </label>
+        <menu>
+          <button value="cancel">取消</button>
+          <button id="saveCustomExercise" value="default" class="primary">保存</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
